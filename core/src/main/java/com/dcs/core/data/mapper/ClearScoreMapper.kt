@@ -13,6 +13,7 @@ fun ClearScoreApiResponse.toDomainModel() = ClearScoreDomainModel(
 fun CreditReportInfo.toDomainModel() = CreditReportInfoDomainModel(
     score = score,
     scoreBand = scoreBand ?: 0,
+    status = status,
     maxScoreValue = maxScoreValue,
     minScoreValue = minScoreValue,
     equifaxScoreBandDescription = equifaxScoreBandDescription ?: ""

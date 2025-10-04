@@ -9,6 +9,7 @@ data class ClearScoreDomainModel(
 data class CreditReportInfoDomainModel(
     val score: Int,
     val scoreBand: Int,
+    val status: String,
     val maxScoreValue: Int,
     val minScoreValue: Int,
     val equifaxScoreBandDescription: String,
