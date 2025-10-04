@@ -21,7 +21,7 @@ class ClearScoreUsecaseImplTest {
     }
 
     @Test
-    fun `getCreditScore returns Success with credit scpre data when repository call succeeds`() = runTest {
+    fun `getCreditScore returns Success with credit score data when repository call succeeds`() = runTest {
             val expectedDomainModel = DataFactory.expectedDomainModel
             fakeClearScoreRepository.setResponse(DomainResult.Success(expectedDomainModel))
             val result = clearScoreUsecaseImpl.getCreditScore()

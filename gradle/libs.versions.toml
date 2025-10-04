@@ -14,6 +14,8 @@ kotlinxSerializationVersion = "1.6.3"
 hiltVersion = "2.51.1"
 ktorVersion = "3.3.0"
 coroutinesVersion = "1.8.0"
+mockk = "1.13.8"
+turbine = "1.0.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -44,6 +46,8 @@ ktor-client-mock = { group = "io.ktor", name = "ktor-client-mock", version.ref =
 kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "coroutinesVersion" }
 kotlin-test = { group = "org.jetbrains.kotlin", name = "kotlin-test", version.ref = "kotlin"}
 kotlin-test-junit = { group = "org.jetbrains.kotlin", name = "kotlin-test-junit", version.ref = "kotlin"}
+mockk = { group = "io.mockk", name = "mockk", version.ref = "mockk"}
+turbine = { group = "app.cash.turbine", name = "turbine", version.ref = "turbine"}
 
 
 [plugins]

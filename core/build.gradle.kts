@@ -31,12 +31,12 @@ android {
         targetCompatibility = JavaVersion.VERSION_21
     }
 
-    testOptions {
-        unitTests.apply {
-            isIncludeAndroidResources = true
-            isReturnDefaultValues = true
-        }
-    }
+//    testOptions {
+//        unitTests.apply {
+//            isIncludeAndroidResources = true
+//            isReturnDefaultValues = true
+//        }
+//    }
 }
 
 dependencies {
