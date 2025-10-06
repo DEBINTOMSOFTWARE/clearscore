@@ -1,5 +1,7 @@
 package com.dcs.core.di
 
+import com.dcs.core.data.network.service.ClearScoreService
+import com.dcs.core.data.network.service.ClearScoreServiceImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -41,5 +43,11 @@ object NetworkModule {
                 contentType(ContentType.Application.Json)
             }
         }
+    }
+
+    @Provides
+    @Singleton
+    fun provideClearScoreService(httpClient: HttpClient): ClearScoreService {
+        return ClearScoreServiceImpl(httpClient)
     }
 }

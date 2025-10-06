@@ -10,7 +10,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-abstract class UseCaseModule {
+abstract class UsecaseModule {
 
     @Binds
     @Singleton
@@ -18,3 +18,14 @@ abstract class UseCaseModule {
         impl: ClearScoreUsecaseImpl
     ): ClearScoreUsecase
 }
+
+//@Module
+//@InstallIn(SingletonComponent::class)
+//class UseCaseModule {
+//
+//    @Provides
+//    @Singleton
+//    fun provideClearScoreUsecase(
+//        impl: ClearScoreUsecaseImpl
+//    ): ClearScoreUsecase = impl
+//}

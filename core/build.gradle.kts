@@ -3,7 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.hilt.android.plugin)
-    kotlin("kapt")
+    alias(libs.plugins.ksp)
 }
 
 android {
@@ -45,8 +45,7 @@ dependencies {
     implementation(libs.material)
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.hilt.android)
-    implementation(libs.hilt.compiler)
-    //kapt(libs.hilt.compiler)
+    ksp(libs.hilt.android.compiler)
     implementation(libs.ktor.client.core)
     implementation(libs.ktor.client.android)
     implementation(libs.ktor.client.content.negotiation)
