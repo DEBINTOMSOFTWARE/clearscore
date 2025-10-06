@@ -20,20 +20,6 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-
-//        val localProperties = Properties().apply {
-//            val localPropertiesFile = rootProject.file("local.properties")
-//            if (localPropertiesFile.exists()) {
-//                load(localPropertiesFile.inputStream())
-//            }
-//        }
-//
-//        val enablePinning = System.getenv("ENABLE_CERTIFICATE_PINNING")?.toBoolean()
-//            ?: localProperties.getProperty("enable.certificate.pinning", "false").toBoolean()
-//        val certPinHash = localProperties.getProperty("certificate.pin.hash", "")
-//
-//        buildConfigField("Boolean", "ENABLE_CERTIFICATE_PINNING", "$enablePinning")
-//        buildConfigField("String", "CERTIFICATE_PIN_HASH", "\"$certPinHash\"")
     }
 
     buildTypes {
@@ -64,7 +50,17 @@ android {
 
     packaging {
         resources {
-            excludes += "META-INF/gradle/incremental.annotation.processors"
+            excludes += listOf("META-INF/gradle/incremental.annotation.processors",
+            "META-INF/DEPENDENCIES",
+            "META-INF/LICENSE",
+            "META-INF/LICENSE.txt",
+            "META-INF/license.txt",
+            "META-INF/NOTICE",
+            "META-INF/NOTICE.txt",
+            "META-INF/notice.txt",
+            "META-INF/ASL2.0",
+            "META-INF/*.kotlin_module"
+            )
         }
     }
 
@@ -89,6 +85,11 @@ dependencies {
     testImplementation(libs.kotlinx.coroutines.test)
     testImplementation(libs.mockk)
     testImplementation(libs.turbine)
+    androidTestImplementation(libs.wireMock) {
+        exclude(group = "org.hamcrest", module = "hamcrest-core")
+        exclude(group = "org.hamcrest", module = "hamcrest-library")
+        exclude(group = "org.hamcrest", module = "hamcrest")
+    }
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))

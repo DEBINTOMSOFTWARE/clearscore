@@ -35,8 +35,9 @@ class ClearScoreViewModel @Inject constructor(
                 is DomainResult.Success -> {
                     _creditScore.value = UIState.Success(result.data)
                 }
+
                 is DomainResult.Error -> {
-                    _creditScore.value = UIState.Error(result.exception.message ?: "Failed to fetch Credit Score")
+                    _creditScore.value = UIState.Error("Failed to fetch Credit Score")
                 }
             }
         }

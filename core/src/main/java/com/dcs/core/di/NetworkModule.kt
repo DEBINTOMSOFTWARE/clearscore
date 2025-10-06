@@ -31,6 +31,28 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
 
+
+    private fun isTestMode(): Boolean {
+        return try {
+            Class.forName("com.dcs.clearscore.TestUrlProvider")
+            true
+        } catch (e: ClassNotFoundException) {
+            false
+        }
+    }
+
+    private val baseUrl: String
+        get() = if (BuildConfig.DEBUG && isTestMode()) {
+            try {
+                Class.forName("com.dcs.clearscore.TestUrlProvider").getDeclaredField("baseUrl")
+                    .get(null) as String
+            } catch (e: Exception) {
+                BuildConfig.BASE_URL
+            }
+        } else {
+            BuildConfig.BASE_URL
+        }
+
     @Provides
     @Singleton
     fun provideOkHttpClient(@ApplicationContext context: Context): OkHttpClient {
@@ -41,7 +63,10 @@ object NetworkModule {
         if (BuildConfig.ENABLE_CERTIFICATE_PINNING) {
             builder.certificatePinner(
                 CertificatePinner.Builder()
-                    .add("android-interview.s3.eu-west-2.amazonaws.com", BuildConfig.CERTIFICATE_PIN_HASH)
+                    .add(
+                        "android-interview.s3.eu-west-2.amazonaws.com",
+                        BuildConfig.CERTIFICATE_PIN_HASH
+                    )
                     .build()
             )
         }
@@ -68,7 +93,7 @@ object NetworkModule {
             }
 
             defaultRequest {
-                url("https://android-interview.s3.eu-west-2.amazonaws.com/")
+                url(baseUrl)
                 contentType(ContentType.Application.Json)
             }
         }

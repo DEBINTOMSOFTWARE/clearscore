@@ -19,7 +19,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.dp
+import com.dcs.clearscore.common.Dimensions
 
 @Composable
 fun CreditScoreCircle(
@@ -31,12 +31,12 @@ fun CreditScoreCircle(
     val ratio = score.coerceIn(0, maxScore) / maxScore.toFloat()
     val sweep = 350f * ratio
 
-    val outlineWidth = 2.dp
-    val trackWidth = 4.dp
-    val progressWidth = 4.dp
-    val gapInsideTrack = 4.dp
+    val outlineWidth = Dimensions.spacingSmall
+    val trackWidth = Dimensions.spacingMedium
+    val progressWidth = Dimensions.spacingMedium
+    val gapInsideTrack = Dimensions.spacingMedium
 
-    Box(modifier = modifier.size(220.dp)) {
+    Box(modifier = modifier.size(Dimensions.boxSize)) {
         Canvas(Modifier.fillMaxSize()) {
             fun rect(inset: Float) = Rect(
                 offset = Offset(inset, inset),
@@ -55,7 +55,7 @@ fun CreditScoreCircle(
             )
 
             // black track
-            val trackInset = outlineInset + 6.dp.toPx()
+            val trackInset = outlineInset + Dimensions.spacingMedium.toPx()
 
             // yellow progress INSIDE the black track
             val progressInset =
@@ -81,13 +81,13 @@ fun CreditScoreCircle(
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
             )
-            Spacer(Modifier.height(4.dp))
+            Spacer(Modifier.height(Dimensions.spacingMedium))
             Text(
                 text = "$score",
                 style = MaterialTheme.typography.bodyLarge,
                 fontWeight = FontWeight.Bold
             )
-            Spacer(Modifier.height(4.dp))
+            Spacer(Modifier.height(Dimensions.spacingMedium))
             Text(
                 text = "out of $maxScore",
                 style = MaterialTheme.typography.bodySmall,

@@ -10,14 +10,15 @@ import javax.inject.Inject
 
 class ClearScoreRepositoryImpl @Inject constructor(
     private val clearScoreService: ClearScoreService,
-): ClearScoreRepository {
+) : ClearScoreRepository {
     override suspend fun getCreditScore(): DomainResult<ClearScoreDomainModel> {
-       return when (val result = clearScoreService.getCreditScore()) {
-           is NetworkResult.Success -> DomainResult.Success(
-               result.data.toDomainModel()
-           )
-           is NetworkResult.Error -> DomainResult.Error(result.exception)
-       }
+        return when (val result = clearScoreService.getCreditScore()) {
+            is NetworkResult.Success -> DomainResult.Success(
+                result.data.toDomainModel()
+            )
+
+            is NetworkResult.Error -> DomainResult.Error(result.exception)
+        }
 
     }
 }

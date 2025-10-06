@@ -19,6 +19,7 @@ mockk = "1.13.8"
 turbine = "1.0.0"
 ksp = "2.2.10-2.0.2"
 okhttp = "4.12.0"
+wireMock = "2.35.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -55,6 +56,7 @@ kotlin-test = { group = "org.jetbrains.kotlin", name = "kotlin-test", version.re
 kotlin-test-junit = { group = "org.jetbrains.kotlin", name = "kotlin-test-junit", version.ref = "kotlin"}
 mockk = { group = "io.mockk", name = "mockk", version.ref = "mockk"}
 turbine = { group = "app.cash.turbine", name = "turbine", version.ref = "turbine"}
+wireMock = { group = "com.github.tomakehurst", name = "wiremock-jre8", version.ref = "wireMock"}
 
 
 [plugins]

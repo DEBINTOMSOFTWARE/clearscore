@@ -5,7 +5,6 @@ import com.dcs.core.domain.model.ClearScoreDomainModel
 import com.dcs.core.domain.repository.ClearScoreRepository
 import javax.inject.Inject
 
-
 class ClearScoreUsecaseImpl @Inject constructor(
     private val clearScoreRepository: ClearScoreRepository
 ) : ClearScoreUsecase {
