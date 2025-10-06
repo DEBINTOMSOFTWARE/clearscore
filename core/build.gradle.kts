@@ -1,3 +1,4 @@
+import java.util.Properties
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.serialization)
@@ -10,11 +11,30 @@ android {
     namespace = "com.dcs.core"
     compileSdk = 36
 
+    buildFeatures {
+        buildConfig = true
+    }
+
     defaultConfig {
         minSdk = 26
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
+
+        val localProperties = Properties().apply {
+            val localPropertiesFile = rootProject.file("local.properties")
+            if (localPropertiesFile.exists()) {
+                load(localPropertiesFile.inputStream())
+            }
+        }
+
+        val enablePinning = System.getenv("ENABLE_CERTIFICATE_PINNING")?.toBoolean()
+            ?: localProperties.getProperty("enable.certificate.pinning", "false").toBoolean()
+        val certPinHash = localProperties.getProperty("certificate.pin.hash", "")
+
+        buildConfigField("Boolean", "ENABLE_CERTIFICATE_PINNING", "$enablePinning")
+        buildConfigField("String", "CERTIFICATE_PIN_HASH", "\"$certPinHash\"")
+        buildConfigField("String", "BASE_URL", "\"https://android-interview.s3.eu-west-2.amazonaws.com/\"")
     }
 
     buildTypes {
@@ -50,6 +70,8 @@ dependencies {
     implementation(libs.ktor.client.android)
     implementation(libs.ktor.client.content.negotiation)
     implementation(libs.ktor.serialization.kotlinx.json)
+    implementation(libs.ktor.client.okhttp)
+    implementation(libs.square.okhttp3)
     implementation(libs.ktor.client.logging)
     testImplementation(libs.ktor.client.mock)
     testImplementation(libs.junit)

@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -18,6 +20,20 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+//        val localProperties = Properties().apply {
+//            val localPropertiesFile = rootProject.file("local.properties")
+//            if (localPropertiesFile.exists()) {
+//                load(localPropertiesFile.inputStream())
+//            }
+//        }
+//
+//        val enablePinning = System.getenv("ENABLE_CERTIFICATE_PINNING")?.toBoolean()
+//            ?: localProperties.getProperty("enable.certificate.pinning", "false").toBoolean()
+//        val certPinHash = localProperties.getProperty("certificate.pin.hash", "")
+//
+//        buildConfigField("Boolean", "ENABLE_CERTIFICATE_PINNING", "$enablePinning")
+//        buildConfigField("String", "CERTIFICATE_PIN_HASH", "\"$certPinHash\"")
     }
 
     buildTypes {
@@ -43,6 +59,7 @@ android {
 
     buildFeatures {
         compose = true
+        buildConfig = true
     }
 
     packaging {

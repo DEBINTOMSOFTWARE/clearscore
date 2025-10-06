@@ -18,14 +18,3 @@ abstract class UsecaseModule {
         impl: ClearScoreUsecaseImpl
     ): ClearScoreUsecase
 }
-
-//@Module
-//@InstallIn(SingletonComponent::class)
-//class UseCaseModule {
-//
-//    @Provides
-//    @Singleton
-//    fun provideClearScoreUsecase(
-//        impl: ClearScoreUsecaseImpl
-//    ): ClearScoreUsecase = impl
-//}
